@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -27,11 +28,13 @@ public class UserPagingSource extends RxPagingSource<Integer, UserBean> {
         try {
             // If page number is already there then init page variable with it otherwise we are loading fist page
             int page = loadParams.getKey() != null ? loadParams.getKey() : 0;
+//            Thread.sleep(2000);
             // Send request to server with page number
             return APIClient.getAPIInterface()
                     .getUserByPage(page, 20)
                     // Subscribe the result
                     .subscribeOn(Schedulers.io())
+                    .delaySubscription(2, TimeUnit.SECONDS)
                     // Map result top List of movies
 //                    .map(MovieResponse::getResults)
 //                    .map(ArrayBean::getArrayList)
@@ -68,6 +71,8 @@ public class UserPagingSource extends RxPagingSource<Integer, UserBean> {
         }
 
         return new LoadResult.Page(movies, before == 0 ? null : before, after);
+//        return new LoadResult.Page(movies, beforeKey == 1 ? null : beforeKey - 1, beforeKey + 1);
+
     }
 
     public static Integer getKeyByValue(HashMap<Integer, Integer> map, int value) {
@@ -84,4 +89,6 @@ public class UserPagingSource extends RxPagingSource<Integer, UserBean> {
     public Integer getRefreshKey(@NotNull PagingState<Integer, UserBean> pagingState) {
         return null;
     }
+
+
 }

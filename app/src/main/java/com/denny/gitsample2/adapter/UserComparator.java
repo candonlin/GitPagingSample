@@ -11,11 +11,11 @@ import com.denny.gitsample2.bean.UserBean;
 public class UserComparator extends DiffUtil.ItemCallback<UserBean> {
     @Override
     public boolean areItemsTheSame(@NonNull UserBean oldItem, @NonNull UserBean newItem) {
-        return oldItem.avatar_url.equals(newItem.avatar_url);
+        return oldItem.login.equals(newItem.login);
     }
 
     @Override
     public boolean areContentsTheSame(@NonNull UserBean oldItem, @NonNull UserBean newItem) {
-        return oldItem.avatar_url.equals(newItem.avatar_url);
+        return oldItem.login.equals(newItem.login);
     }
 }

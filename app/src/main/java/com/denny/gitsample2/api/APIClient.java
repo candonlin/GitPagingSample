@@ -61,7 +61,5 @@ public class APIClient {
 
         @GET("users/{user}")
         Call<UserDetailBean> getUserDetail(@Path("user") String user);
-//        Single<UserBean> getMoviesByPage(@Query("since") int page);
-//        Single<ArrayBean> getMoviesByPage(@Query("since") int page);
     }
 }

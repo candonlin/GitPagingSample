@@ -1,5 +1,6 @@
 package com.denny.gitsample2.adapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,6 +72,8 @@ public class UserAdapter extends PagingDataAdapter<UserBean, UserAdapter.MyViewH
     @Override
     public int getItemViewType(int position) {
         // set ViewType
+        Log.e("getItemViewType", "" + position + "    " + getItemCount());
+        Log.e("getItemViewType", "" + (position == getItemCount() ? MOVIE_ITEM : LOADING_ITEM));
         return position == getItemCount() ? MOVIE_ITEM : LOADING_ITEM;
     }
 
@@ -93,7 +96,7 @@ public class UserAdapter extends PagingDataAdapter<UserBean, UserAdapter.MyViewH
         }
     }
 
-   public interface OnClickListner {
+    public interface OnClickListner {
         void onClick(UserBean bean, int pos);
     }
 }

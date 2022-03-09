@@ -12,8 +12,8 @@ import androidx.paging.LoadState;
 import androidx.paging.LoadStateAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import com.denny.gitsample2.R;
+import com.denny.gitsample2.databinding.LoadStateItemBinding;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -54,10 +54,10 @@ public class UserLoadStateAdapter extends LoadStateAdapter<UserLoadStateAdapter.
                 @NonNull View.OnClickListener retryCallback) {
             super(LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.load_state_item, parent, false));
-//            LoadStateItemBinding binding = LoadStateItemBinding.bind(itemView);
-            mProgressBar = itemView.findViewById(R.id.progressBar);
-            mErrorMsg = itemView.findViewById(R.id.errorMsg);
-            mRetry = itemView.findViewById(R.id.retryButton);
+            LoadStateItemBinding binding = LoadStateItemBinding.bind(itemView);
+            mProgressBar = binding.progressBar;
+            mErrorMsg = binding.errorMsg;
+            mRetry = binding.retryButton;
             mRetry.setOnClickListener(retryCallback);
         }
 
@@ -78,4 +78,5 @@ public class UserLoadStateAdapter extends LoadStateAdapter<UserLoadStateAdapter.
                     ? View.VISIBLE : View.GONE);
         }
     }
+
 }
